@@ -1,0 +1,21 @@
+services:
+  arduino:
+    image: arduino-docker:latest
+    build:
+      context: .
+      args:
+        - DEVELOPER_UID=${DEVELOPER_UID}
+        - DEVELOPER_GID=${DEVELOPER_GID}
+    restart: on-failure
+    user: ${DEVELOPER_UID}:${DEVELOPER_GID}
+    tty: true
+    environment:
+      - DISPLAY=unix$DISPLAY
+    volumes:
+      - ~/.Xauthority:/home/developer/.Xauthority
+      - ./Arduino/libraries/:/home/developer/Arduino/libraries/
+      - ./Arduino/arduino15/:/home/developer/.arduino15/
+      - ./Projects/:/home/developer/Projects/
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    network_mode: host

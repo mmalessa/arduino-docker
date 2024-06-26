@@ -1,0 +1,5 @@
+/Arduino/arduino15/*
+/Arduino/libraries/*
+/Projects/*
+
+!/**/.gitkeep
